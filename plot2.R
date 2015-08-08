@@ -1,4 +1,4 @@
-library("data.table") 
+library("data.table")
 ## project assumes data file "household_power_consumption.txt" exists in the same directory as script
 
 ## read in full data table
