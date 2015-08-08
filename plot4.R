@@ -1,4 +1,6 @@
 library("data.table")
+## project assumes data file "household_power_consumption.txt" exists in the same directory as script
+
 ## read in full data table
 powerConsumption <- data.table(
   read.table(
@@ -63,6 +65,7 @@ plot(strptime(powerConsumption.workingset$DateTime,"%F %H:%M:%S")
 )
     
 ## bottom left
+powerConsumption.workingset$Sub_metering_1 <- setNumeric(powerConsumption.workingset$Sub_metering_1)
 plot(strptime(powerConsumption.workingset$DateTime,"%F %H:%M:%S")
      , powerConsumption.workingset$Sub_metering_1
      , type="l"
@@ -71,12 +74,14 @@ plot(strptime(powerConsumption.workingset$DateTime,"%F %H:%M:%S")
      , yaxt="n"
 )
     
+  powerConsumption.workingset$Sub_metering_2 <- setNumeric(powerConsumption.workingset$Sub_metering_2)
   lines(strptime(powerConsumption.workingset$DateTime,"%F %H:%M:%S")
         , powerConsumption.workingset$Sub_metering_2
         , type="l"
         , col = "red"
       )
     
+  powerConsumption.workingset$Sub_metering_3 <- setNumeric(powerConsumption.workingset$Sub_metering_3)
   lines(strptime(powerConsumption.workingset$DateTime,"%F %H:%M:%S")
         , powerConsumption.workingset$Sub_metering_3
         , type="l"
@@ -89,7 +94,7 @@ plot(strptime(powerConsumption.workingset$DateTime,"%F %H:%M:%S")
          , col=c("black","red","blue")
        )
     
-  axis(2, at = seq(10, 30, by = 10), las=2)
+  axis(2, at = seq(0, 30, by = 10))
     
 ##bottom right
 ##set right numeric data types for "Global_reactive_power"
